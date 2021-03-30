@@ -1,9 +1,17 @@
 PImage bg,soil,life,groundhogIdle,soldier,cabbage,title,startNormal,startHovered;
-float groundhogX ;
-float groundhogY ;
-float groundhogSpeed = 80 ;
+float groundhogX = 320;
+float groundhogY = 80;
+float groundhog_W = 80;
+float groundhog_H = 80;
+float groundhogSpeed = 80;
 float soldierX;
 float soldierY;
+float soldier_W = 80;
+float soldier_H = 80;
+float cabbageX = 560;
+float cabbageY = 160;
+float cabbage_W = 80;
+float cabbage_H = 80;
 
 void setup() {
 	size(640, 480, P2D);
@@ -13,10 +21,6 @@ void setup() {
   groundhogIdle = loadImage("img/groundhogIdle.png");
   soldier = loadImage("img/soldier.png");
   cabbage = loadImage("img/cabbage.png");
-  
-  //groundhog
-  groundhogX = 320 ;
-  groundhogY = 80 ;
   
   //soldier
   soldierX = 0;
@@ -38,9 +42,6 @@ void draw() {
   groundhogY = 80;
   }
   
-  //hit
-  //x
-  
   //backgroung
   image(bg,0,0);
 
@@ -59,13 +60,21 @@ void draw() {
   image(soil,0,160);//ground
   image(life,10,10);//heart
   image(life,80,10);//heart
-  image(groundhogIdle,groundhogX,groundhogY);//groundhogIdle
-  image(cabbage,560,160);//cabbage
+  image(groundhogIdle,groundhogX,groundhogY,groundhog_W,groundhog_H);//groundhogIdle
+  image(cabbage,cabbageX,cabbageY,cabbage_W,cabbage_H);//cabbage
   
   //soldier
-  image(soldier,soldierX-80,soldierY);
+  image(soldier,soldierX-80,soldierY,soldier_W,soldier_H);
   soldierX += 3;
   soldierX %= 640+80;
+  
+  //cabbage hit
+  if(groundhogX + groundhog_W > cabbageX &&
+     groundhogX < cabbageX + cabbage_W &&
+     groundhogY + groundhog_H > cabbageY &&
+     groundhogY < cabbageY + cabbage_H){
+       image(life,150,10);
+     }
   
   }
 
@@ -87,8 +96,11 @@ void keyPressed(){
      case RIGHT:
       groundhogX += groundhogSpeed;
       break;
+      
+
    }
   }
   }
+  
   
   
