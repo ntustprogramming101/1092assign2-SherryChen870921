@@ -20,7 +20,7 @@ int gameState;
 
 final int TOTAL_HEART = 2;
 int heart;
-int lifeX =80 ;
+int lifeX =150;
 
 void setup() {
   
@@ -107,7 +107,6 @@ void draw() {
         println(heart);
         heart++;
         image(life,lifeX,10);
-        
         image(soil,0,160);
        }
     
